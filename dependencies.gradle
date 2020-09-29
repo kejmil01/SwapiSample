@@ -2,7 +2,8 @@ ext {
 	kotlinVersion = '1.4.10'
 	retrofitVersion = '2.9.0'
 	okHttpVersion = '4.9.0'
-	daggerVersion = '2.29.1'
+	hiltVersion = '1.0.0-alpha02'
+	hiltAndroidVersion = '2.29.1-alpha'
 	rxKotlin = '3.0.1'
 	rxAndroid = '3.0.0'
 	androidxAppcompatVersion = '1.2.0'
@@ -24,23 +25,23 @@ ext {
 			rxandroid: "io.reactivex.rxjava3:rxandroid:$rxAndroid"
 	]
 
-	daggerDependencies = [
-			dagger              : "com.google.dagger:dagger:$daggerVersion",
-			daggerAndroidSupport: "com.google.dagger:dagger-android-support:$daggerVersion"
+	diDependencies = [
+			hiltAndroid         : "com.google.dagger:hilt-android:$hiltAndroidVersion",
+			hiltViewModelSupport: "androidx.hilt:hilt-lifecycle-viewmodel:$hiltVersion"
 	]
 
-	daggerProcessorDependencies = [
-			daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
-			daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerVersion"
+	diProcessorDependencies = [
+			hiltAndroidCompiler: "com.google.dagger:hilt-android-compiler:$hiltAndroidVersion",
+			hiltCompiler       : "androidx.hilt:hilt-compiler:$hiltVersion"
 	]
 
 	androidxDependencies = [
-			appcompat      : "androidx.appcompat:appcompat:$androidxAppcompatVersion",
-			coreKtx        : "androidx.core:core-ktx:$androidxCoreVersion",
-			constraintLayout: "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion",
-			fragmentKtx    : "androidx.fragment:fragment-ktx:$androidxFragment",
-			navigationFragmentKtx : "androidx.navigation:navigation-fragment-ktx:$androidxNavigation",
-			navigationUiKtx : "androidx.navigation:navigation-ui-ktx:$androidxNavigation",
-			recyclerView: "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+			appcompat            : "androidx.appcompat:appcompat:$androidxAppcompatVersion",
+			coreKtx              : "androidx.core:core-ktx:$androidxCoreVersion",
+			constraintLayout     : "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion",
+			fragmentKtx          : "androidx.fragment:fragment-ktx:$androidxFragment",
+			navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:$androidxNavigation",
+			navigationUiKtx      : "androidx.navigation:navigation-ui-ktx:$androidxNavigation",
+			recyclerView         : "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 	]
 }
