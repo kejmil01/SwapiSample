@@ -1,7 +1,8 @@
-package net.fezzed.swapisample
+package net.fezzed.swapisample.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import net.fezzed.swapisample.R
 
 class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {

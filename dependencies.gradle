@@ -16,7 +16,7 @@ ext {
 			okHttp           : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
 			retrofit         : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
 			retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-			retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+			retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava3:${retrofitVersion}"
 	]
 
 	rxDependencies = [
