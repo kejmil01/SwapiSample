@@ -9,4 +9,8 @@ class FetchHomeContentUseCase @Inject constructor(private val repository: SwapiR
 	fun fetchContent(): Single<SearchResultModel> {
 		return repository.fetchHomeContent()
 	}
+
+	suspend fun fetchContentCoroutines(): SearchResultModel {
+		return repository.fetchHomeContentCoroutines()
+	}
 }

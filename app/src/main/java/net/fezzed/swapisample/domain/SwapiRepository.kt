@@ -5,4 +5,6 @@ import net.fezzed.swapisample.data.network.model.SearchResultModel
 
 interface SwapiRepository {
 	fun fetchHomeContent(): Single<SearchResultModel>
+
+	suspend fun fetchHomeContentCoroutines(): SearchResultModel
 }

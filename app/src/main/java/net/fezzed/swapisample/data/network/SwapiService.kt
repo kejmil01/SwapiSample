@@ -7,4 +7,7 @@ import retrofit2.http.GET
 interface SwapiService {
 	@GET("people/?search=a")
 	fun getUsers(): Single<SearchResultModel>
+
+	@GET("people/?search=a")
+	suspend fun getUsersCoroutines(): SearchResultModel
 }
