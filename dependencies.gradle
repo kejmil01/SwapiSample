@@ -11,6 +11,7 @@ ext {
 	androidxConstraintLayoutVersion = '2.0.1'
 	androidxFragment = '1.2.5'
 	androidxNavigation = "2.3.0"
+	androidxSavedState = "2.3.0-beta01"
 	recyclerViewVersion = '1.1.0'
 
 	networkDependencies = [
@@ -42,6 +43,7 @@ ext {
 			fragmentKtx          : "androidx.fragment:fragment-ktx:$androidxFragment",
 			navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:$androidxNavigation",
 			navigationUiKtx      : "androidx.navigation:navigation-ui-ktx:$androidxNavigation",
-			recyclerView         : "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+			recyclerView         : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
+			savedState			 : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$androidxSavedState"
 	]
 }

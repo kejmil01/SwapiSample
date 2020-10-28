@@ -1,5 +1,7 @@
 package net.fezzed.swapisample.data.network.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class ResultModel (
@@ -20,4 +22,57 @@ data class ResultModel (
 	@SerializedName("created") val created : String,
 	@SerializedName("edited") val edited : String,
 	@SerializedName("url") val url : String
-)
+) : Parcelable {
+	constructor(parcel: Parcel) : this(
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.createStringArrayList()!!,
+		parcel.createStringArrayList()!!,
+		parcel.createStringArrayList()!!,
+		parcel.createStringArrayList()!!,
+		parcel.readString()!!,
+		parcel.readString()!!,
+		parcel.readString()!!
+	) {
+	}
+
+	override fun writeToParcel(parcel: Parcel, flags: Int) {
+		parcel.writeString(name)
+		parcel.writeString(height)
+		parcel.writeString(mass)
+		parcel.writeString(hair_color)
+		parcel.writeString(skin_color)
+		parcel.writeString(eye_color)
+		parcel.writeString(birth_year)
+		parcel.writeString(gender)
+		parcel.writeString(homeworld)
+		parcel.writeStringList(films)
+		parcel.writeStringList(species)
+		parcel.writeStringList(vehicles)
+		parcel.writeStringList(starships)
+		parcel.writeString(created)
+		parcel.writeString(edited)
+		parcel.writeString(url)
+	}
+
+	override fun describeContents(): Int {
+		return 0
+	}
+
+	companion object CREATOR : Parcelable.Creator<ResultModel> {
+		override fun createFromParcel(parcel: Parcel): ResultModel {
+			return ResultModel(parcel)
+		}
+
+		override fun newArray(size: Int): Array<ResultModel?> {
+			return arrayOfNulls(size)
+		}
+	}
+}
