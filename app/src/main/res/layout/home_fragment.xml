@@ -41,10 +41,12 @@
 
 		<FrameLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="0dp"
 				android:background="#99000000"
 				android:elevation="4dp"
-				android:visibility="@{viewModel.loadingInProgress ? View.VISIBLE : View.GONE}">
+				android:visibility="@{viewModel.loadingInProgress ? View.VISIBLE : View.GONE}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/searchView">
 
 			<ProgressBar
 					android:layout_width="wrap_content"
