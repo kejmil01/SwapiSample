@@ -17,12 +17,27 @@
 			android:layout_height="match_parent"
 			tools:context=".ui.home.HomeFragment">
 
+		<EditText
+				android:id="@+id/searchView"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_margin="16dp"
+				android:hint="Search"
+				android:importantForAutofill="no"
+				android:inputType="text"
+				android:text="@={viewModel.query}"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:ignore="LabelFor" />
+
 		<TextView
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
+				android:layout_marginTop="16dp"
 				android:text="@{viewModel.text}"
 				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintTop_toTopOf="parent" />
+				app:layout_constraintTop_toBottomOf="@id/searchView" />
 
 		<FrameLayout
 				android:layout_width="match_parent"

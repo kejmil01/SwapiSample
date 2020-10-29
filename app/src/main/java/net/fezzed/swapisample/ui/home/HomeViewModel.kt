@@ -2,10 +2,7 @@ package net.fezzed.swapisample.ui.home
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import net.fezzed.swapisample.data.network.model.ResultModel
 import net.fezzed.swapisample.domain.FetchHomeContentUseCase
@@ -15,31 +12,42 @@ class HomeViewModel @ViewModelInject constructor(
 	private val fetchHomeContentUseCase: FetchHomeContentUseCase
 ) : ViewModel() {
 
-	val text = MutableLiveData("No data")
-	val result: MutableList<ResultModel> = mutableListOf()
-	val loadingInProgress: MutableLiveData<Boolean> = MutableLiveData(false)
+	private val queryObserver = Observer<String> { fetchContent(it) }
 
+	val query: MutableLiveData<String> = state.getLiveData(KEY_QUERY, "")
+	val text: MutableLiveData<String> = state.getLiveData(KEY_TEXT, "No data")
+	val result: MutableLiveData<List<ResultModel>> = state.getLiveData(KEY_RESULT, emptyList())
+	val loadingInProgress: MutableLiveData<Boolean> = state.getLiveData(KEY_PROGRESS, false)
+
+	//TODO test advanced proccess restoration - look for SwapiSearchSample(MVI) for examples
 	init {
-		fetchContent()
+		query.observeForever(queryObserver)
 	}
 
-	private fun fetchContent() {
-		loadingInProgress.value = true
+	override fun onCleared() {
+		query.removeObserver(queryObserver)
+		super.onCleared()
+	}
+
+	private fun fetchContent(queryString: String) {
+		state.set(KEY_PROGRESS, true)
 		viewModelScope.launch {
 			try {
-				val content = fetchHomeContentUseCase.fetchContentCoroutines()
-				result.clear()
-				result.addAll(content.results)
-				text.value = content.results.toString()
+				val content = fetchHomeContentUseCase.fetchContentCoroutines(queryString)
+				state.set(KEY_RESULT, content.results)
+				state.set(KEY_TEXT, content.results.toString())
 			} catch (t: Throwable) {
 				text.value = t.message
 			} finally {
-				loadingInProgress.value = false
+				state.set(KEY_PROGRESS, false)
 			}
 		}
 	}
 
 	companion object {
-		val KEY = "resultKey"
+		const val KEY_QUERY = "queryKey"
+		const val KEY_RESULT = "resultKey"
+		const val KEY_TEXT = "textKey"
+		const val KEY_PROGRESS = "progressKey"
 	}
 }

@@ -6,11 +6,11 @@ import javax.inject.Inject
 
 class FetchHomeContentUseCase @Inject constructor(private val repository: SwapiRepository) {
 
-	fun fetchContent(): Single<SearchResultModel> {
-		return repository.fetchHomeContent()
+	fun fetchContent(queryString: String): Single<SearchResultModel> {
+		return repository.fetchHomeContent(queryString)
 	}
 
-	suspend fun fetchContentCoroutines(): SearchResultModel {
-		return repository.fetchHomeContentCoroutines()
+	suspend fun fetchContentCoroutines(queryString: String): SearchResultModel {
+		return repository.fetchHomeContentCoroutines(queryString)
 	}
 }
