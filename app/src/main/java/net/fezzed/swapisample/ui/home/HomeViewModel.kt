@@ -59,7 +59,7 @@ class HomeViewModel @ViewModelInject constructor(
 
 	private fun tryToStartNewFetchingProcess(queryString: String) {
 		if(queryString != fetchingProcessState.value?.query ||
-			true == fetchingProcessState.value?.result?.isNotEmpty()) {
+			true == fetchingProcessState.value?.result?.isNullOrEmpty()) {
 			fetchingProcessState.value = FetchingProcessState(true, queryString, emptyList())
 		}
 	}
