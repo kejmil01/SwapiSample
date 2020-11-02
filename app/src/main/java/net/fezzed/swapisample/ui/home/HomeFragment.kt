@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import net.fezzed.swapisample.databinding.HomeFragmentBinding
 
@@ -22,6 +23,11 @@ class HomeFragment : Fragment() {
 		binding = HomeFragmentBinding.inflate(inflater, container, false).apply {
 			lifecycleOwner = viewLifecycleOwner
 		}
+
+		binding.navigateButton.setOnClickListener {
+			findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTestFragment())
+		}
+
 		return binding.root
 	}
 
