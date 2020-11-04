@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
 		}
 
 		binding.navigateButton.setOnClickListener {
+			viewModel.stateRepository.updateState(viewModel.stateRepository.stateString + "a")
 			findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTestFragment())
 		}
 

@@ -7,11 +7,13 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import net.fezzed.swapisample.data.network.model.ResultModel
+import net.fezzed.swapisample.data.repository.TestRepositoryWithState
 import net.fezzed.swapisample.domain.FetchHomeContentUseCase
 
 class HomeViewModel @ViewModelInject constructor(
 	@Assisted private val state: SavedStateHandle,
-	private val fetchHomeContentUseCase: FetchHomeContentUseCase
+	private val fetchHomeContentUseCase: FetchHomeContentUseCase,
+	val stateRepository: TestRepositoryWithState
 ) : ViewModel() {
 
 	private val queryObserver = buildQueryObserver()
@@ -36,7 +38,7 @@ class HomeViewModel @ViewModelInject constructor(
 
 	private fun buildFetchingProcessObserver() = Observer<FetchingProcessState> {
 		loadingInProgress.value = it.inProgress
-		if(it.inProgress) {
+		if (it.inProgress) {
 			fetchContent(it.query)
 		} else {
 			/**
@@ -44,7 +46,7 @@ class HomeViewModel @ViewModelInject constructor(
 			 */
 			result.value = it.result
 			it.error?.let { error ->
-				text.value =  error
+				text.value = error
 			} ?: run {
 				text.value = it.result.toString()
 			}
@@ -58,8 +60,9 @@ class HomeViewModel @ViewModelInject constructor(
 	}
 
 	private fun tryToStartNewFetchingProcess(queryString: String) {
-		if(queryString != fetchingProcessState.value?.query ||
-			true == fetchingProcessState.value?.result?.isNullOrEmpty()) {
+		if (queryString != fetchingProcessState.value?.query ||
+			true == fetchingProcessState.value?.result?.isNullOrEmpty()
+		) {
 			fetchingProcessState.value = FetchingProcessState(true, queryString, emptyList())
 		}
 	}
@@ -69,7 +72,7 @@ class HomeViewModel @ViewModelInject constructor(
 		fetchingJob = viewModelScope.launch {
 			try {
 				val content = fetchHomeContentUseCase.fetchContentCoroutines(queryString)
-				if(isActive) {
+				if (isActive) {
 					fetchingProcessState.value = FetchingProcessState(
 						false,
 						queryString,
@@ -78,7 +81,7 @@ class HomeViewModel @ViewModelInject constructor(
 					)
 				}
 			} catch (t: Throwable) {
-				if(isActive) {
+				if (isActive) {
 					fetchingProcessState.value = FetchingProcessState(
 						false,
 						queryString,
