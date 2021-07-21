@@ -3,14 +3,14 @@ package net.fezzed.swapisample.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import net.fezzed.swapisample.data.network.SwapiServiceBuilder
 import net.fezzed.swapisample.data.repository.SwapiRepositoryImpl
 import net.fezzed.swapisample.domain.SwapiRepository
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class ApplicationModule {
 
 	@Provides

@@ -1,11 +1,13 @@
 ext {
-	kotlinVersion = '1.4.10'
+	kotlinVersion = '1.5.10'
 	retrofitVersion = '2.9.0'
 	okHttpVersion = '4.9.0'
-	hiltVersion = '1.0.0-alpha02'
-	hiltAndroidVersion = '2.29.1-alpha'
+	hiltVersion = '1.0.0'
+	hiltViewModelVersion = '1.0.0-alpha03'
+	hiltAndroidVersion = '2.38'
 	rxKotlin = '3.0.1'
 	rxAndroid = '3.0.0'
+	livedata = '2.3.1'
 	androidxAppcompatVersion = '1.2.0'
 	androidxCoreVersion = '1.3.1'
 	androidxConstraintLayoutVersion = '2.0.1'
@@ -22,13 +24,14 @@ ext {
 	]
 
 	rxDependencies = [
-			rxkotlin : "io.reactivex.rxjava3:rxkotlin:$rxKotlin",
-			rxandroid: "io.reactivex.rxjava3:rxandroid:$rxAndroid"
+			rxkotlin : 	"io.reactivex.rxjava3:rxkotlin:$rxKotlin",
+			rxandroid: 	"io.reactivex.rxjava3:rxandroid:$rxAndroid",
+			livedata:	"androidx.lifecycle:lifecycle-livedata-ktx:$livedata"
 	]
 
 	diDependencies = [
 			hiltAndroid         : "com.google.dagger:hilt-android:$hiltAndroidVersion",
-			hiltViewModelSupport: "androidx.hilt:hilt-lifecycle-viewmodel:$hiltVersion"
+			hiltViewModelSupport: "androidx.hilt:hilt-lifecycle-viewmodel:$hiltViewModelVersion"
 	]
 
 	diProcessorDependencies = [

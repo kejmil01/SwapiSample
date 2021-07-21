@@ -1,16 +1,15 @@
 package net.fezzed.swapisample.ui.home
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import net.fezzed.swapisample.data.network.model.ResultModel
 import net.fezzed.swapisample.domain.FetchHomeContentUseCase
+import javax.inject.Inject
 
-class HomeViewModel @ViewModelInject constructor(
-	@Assisted private val state: SavedStateHandle,
+@HiltViewModel
+class HomeViewModel @Inject constructor(
 	fetchHomeContentUseCase: FetchHomeContentUseCase
 ) : ViewModel() {
 
@@ -33,9 +32,5 @@ class HomeViewModel @ViewModelInject constructor(
 				}
 				loadingInProgress.value = false
 			}
-	}
-
-	companion object {
-		val KEY = "resultKey"
 	}
 }
